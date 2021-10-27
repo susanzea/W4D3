@@ -25,7 +25,7 @@ def reaction(maybe_fruit)
           feed_me_a_fruit
         end
     end
-  end
+end
 
     # coffee == "coffee" ? feed_me_a_fruit : (puts "no, go away")
 
@@ -49,6 +49,9 @@ end
 # PHASE 4
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
+    raise "You haven't know me long enough, babe." if yrs_known <= 5
+    raise "Tell me your name" if (name.length < 1) #|| (name.nil?)
+    raise "Tell me you hobbies" if (fav_pastime.length < 1) 
     @name = name
     @yrs_known = yrs_known
     @fav_pastime = fav_pastime
@@ -68,3 +71,5 @@ class BestFriend
 end
 
 
+b = BestFriend.new("David", 10, "running")
+p b 
