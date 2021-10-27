@@ -6,13 +6,37 @@ end
 # PHASE 3
 FRUITS = ["apple", "banana", "orange"]
 
+class NoFruitError < StandardError; end
+class DecaffeinatedError < StandardError; end
+
 def reaction(maybe_fruit)
-  if FRUITS.include? maybe_fruit
-    puts "OMG, thanks so much for the #{maybe_fruit}!"
-  else 
-    raise StandardError 
-  end 
+  begin
+    if FRUITS.include?(maybe_fruit)
+      puts "OMG, thanks so much for the #{maybe_fruit}!"
+    else 
+      raise NoFruitError
+    end
+  rescue NoFruitError
+        # NoFruitError.new("This isn't fruity!")
+        # raise NoFruitError.message
+        if get_coffee == false
+          raise DecaffeinatedError
+        else
+          feed_me_a_fruit
+        end
+    end
+  end
+
+    # coffee == "coffee" ? feed_me_a_fruit : (puts "no, go away")
+
+def get_coffee
+  puts "give me coffee!!!"
+  coffee = gets.chomp
+  # raise DecaffeinatedError.new("this is just muddy water!") unless coffee == "coffee"
+  # true
+  return coffee == "coffee"
 end
+
 
 def feed_me_a_fruit
   puts "Hello, I am a friendly monster. :)"
